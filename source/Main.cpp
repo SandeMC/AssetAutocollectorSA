@@ -16,9 +16,8 @@ public:
         static unsigned int numAssets = 0;
         static unsigned int totalMoney = 0;
         static bool playerCantReceive = true;
-        static bool ranPickupCheck = false;
         static bool hasPlayerDied = false;
-
+        
         myOnClockUpdate.before += [] {
             lastStoredHour = CClock::ms_nGameClockHours;
         };
@@ -30,30 +29,24 @@ public:
                 playerCantReceive = false;
                 totalMoney = 0;
                 numAssets = 0;
-                ranPickupCheck = false;
                 hasPlayerDied = false;
             }
-            if (!playerCantReceive && !ranPickupCheck) {
+            if (!playerCantReceive) {
                 for (unsigned int i = 0; i < MAX_NUM_PICKUPS; ++i) {
                     if (CPickups::aPickUps[i].m_nPickupType == PICKUP_ASSET_REVENUE) {
                         totalMoney += CPickups::aPickUps[i].m_nMoneyPerDay;
                         CPickups::aPickUps[i].m_fRevenueValue = 0.0f;
                         ++numAssets;
-                        ranPickupCheck = true;
                     }
                 }
             }
             if (CClock::ms_nGameClockHours < lastStoredHour) {
                 if (totalMoney > 0) {
+                    Sleep(10);
                     CWorld::Players[0].m_nMoney += totalMoney;
                     static char text[256];
                     sprintf(text, "You have earned $%d from %d assets", totalMoney, numAssets);
                     CHud::SetHelpMessage(text, true, false, false);
-                    if (!playerCantReceive) {
-                        totalMoney = 0;
-                        numAssets = 0;
-                        ranPickupCheck = false;
-                    }
                 }
             }
             if (CWorld::Players[0].m_nPlayerState == PLAYERSTATE_HASDIED && lastStoredHour >= 12 && !hasPlayerDied || CWorld::Players[0].m_nPlayerState == PLAYERSTATE_HASBEENARRESTED && lastStoredHour >= 12 && !hasPlayerDied) {
@@ -62,11 +55,6 @@ public:
                     static char text[256];
                     sprintf(text, "You have earned $%d from %d assets", totalMoney, numAssets);
                     CHud::SetHelpMessage(text, true, false, false);
-                    if (!playerCantReceive) {
-                        totalMoney = 0;
-                        numAssets = 0;
-                        ranPickupCheck = false;
-                    }
                 }
                 hasPlayerDied = true;
             }
