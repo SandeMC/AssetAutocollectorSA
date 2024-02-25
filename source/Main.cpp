@@ -16,11 +16,7 @@ public:
         static unsigned int numAssets = 0;
         static unsigned int totalMoney = 0;
         static bool playerCantReceive = true;
-        static bool hasPlayerDied = false;
-        
-        myOnClockUpdate.before += [] {
-            lastStoredHour = CClock::ms_nGameClockHours;
-        };
+
         myOnClockUpdate.after += [] {
             if (CGame::currArea != 0 || CTheScripts::IsPlayerOnAMission() || CWorld::Players[0].m_nPlayerState != PLAYERSTATE_PLAYING) {
                 playerCantReceive = true;
@@ -29,8 +25,8 @@ public:
                 playerCantReceive = false;
                 totalMoney = 0;
                 numAssets = 0;
-                hasPlayerDied = false;
             }
+
             if (!playerCantReceive) {
                 for (unsigned int i = 0; i < MAX_NUM_PICKUPS; ++i) {
                     if (CPickups::aPickUps[i].m_nPickupType == PICKUP_ASSET_REVENUE) {
@@ -40,23 +36,13 @@ public:
                     }
                 }
             }
-            if (CClock::ms_nGameClockHours < lastStoredHour) {
-                if (totalMoney > 0) {
-                    Sleep(10);
-                    CWorld::Players[0].m_nMoney += totalMoney;
-                    static char text[256];
-                    sprintf(text, "You have earned $%d from %d assets", totalMoney, numAssets);
-                    CHud::SetHelpMessage(text, true, false, false);
-                }
-            }
-            if (CWorld::Players[0].m_nPlayerState == PLAYERSTATE_HASDIED && lastStoredHour >= 12 && !hasPlayerDied || CWorld::Players[0].m_nPlayerState == PLAYERSTATE_HASBEENARRESTED && lastStoredHour >= 12 && !hasPlayerDied) {
+            if (CClock::ms_nGameClockHours < lastStoredHour && lastStoredHour >= 12) {
                 if (totalMoney > 0) {
                     CWorld::Players[0].m_nMoney += totalMoney;
                     static char text[256];
-                    sprintf(text, "You have earned $%d from %d assets", totalMoney, numAssets);
+                    sprintf(text, "You have earned $%d from %d/10 assets.", totalMoney, numAssets);
                     CHud::SetHelpMessage(text, true, false, false);
                 }
-                hasPlayerDied = true;
             }
             lastStoredHour = CClock::ms_nGameClockHours;
             };
