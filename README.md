@@ -8,4 +8,3 @@ Made with [plugin-sdk](https://github.com/DK22Pac/plugin-sdk), based on the [ori
 Changes from the original script:
 - Account for time skips (dying, arrested, saving - though it's prone to cheating if you switch from a savefile that is at 12:00 or later to a savefile that's at 11:00 or earlier).
 - Adjust the pickup check to make sure it only triggers when outside of an interior and not on a mission, allowing it to count even when inside an interior.
-- Reset the values properly.
