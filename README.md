@@ -1,5 +1,5 @@
 # AssetAutocollectorSA
-![image](https://github.com/SandeMC/AssetAutocollectorSA/assets/70141395/54f4845b-ac47-4372-bfcc-c4d0551466ea)
+![image](https://github.com/SandeMC/AssetAutocollectorSA/assets/70141395/30e70080-a344-4e1e-91dc-0516c89e0925)
 
 Automatically collects your revenue from every owned asset every time the clock resets after 12:00 (saving takes 6 hours, dying/getting arrested takes 12). Works even in interiors, but you need to touch grass at least once per session for it to work. It also disables the ability to grab money yourself - though the pickup itself will be there. 
 
