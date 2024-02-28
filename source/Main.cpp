@@ -37,7 +37,7 @@ public:
                     }
                 }
             }
-            if (CClock::ms_nGameClockHours < lastStoredHour && lastStoredHour >= 12 && (lastStoredMinute == CClock::ms_nGameClockMinutes || CClock::ms_nGameClockMinutes - lastStoredMinute == 1 || (lastStoredMinute == 59 && CClock::ms_nGameClockMinutes == 0 && CClock::ms_nGameClockHours - lastStoredHour == 1))) {
+            if (CClock::ms_nGameClockHours < lastStoredHour && lastStoredHour >= 12 && (lastStoredMinute == CClock::ms_nGameClockMinutes || CClock::ms_nGameClockMinutes - lastStoredMinute == 1 || (lastStoredMinute == 59 && CClock::ms_nGameClockMinutes == 0 && (CClock::ms_nGameClockHours - lastStoredHour == 1 || lastStoredHour == 23 && CClock::ms_nGameClockHours == 0)))) {
                 if (totalMoney > 0) {
                     CWorld::Players[0].m_nMoney += totalMoney;
                     static char text[256];
