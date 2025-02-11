@@ -31,7 +31,8 @@ public:
             if (!playerCantReceive) {
                 for (unsigned int i = 0; i < MAX_NUM_PICKUPS; ++i) {
                     if (CPickups::aPickUps[i].m_nPickupType == PICKUP_ASSET_REVENUE) {
-                        totalMoney += CPickups::aPickUps[i].m_fRevenueValue;
+                        totalMoney += CPickups::aPickUps[i].m_nMoneyPerDay;
+                        CPickups::aPickUps[i].m_fRevenueValue = 0.0f;
                         ++numAssets;
                     }
                 }

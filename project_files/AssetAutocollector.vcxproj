@@ -11,11 +11,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{39F0BA85-257F-444F-CE9D-584ABA0B55F5}</ProjectGuid>
+    <ProjectGuid>{05D0C638-F1B3-878E-5A14-82E146177210}</ProjectGuid>
     <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>AssetAutocollectorSA</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <RootNamespace>AssetAutocollector</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -44,14 +43,14 @@
     <LinkIncremental>false</LinkIncremental>
     <OutDir>..\output\asi\</OutDir>
     <IntDir>..\output\obj\Release\</IntDir>
-    <TargetName>AssetAutocollectorSASA</TargetName>
+    <TargetName>AssetAutocollectorSA</TargetName>
     <TargetExt>.asi</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <OutDir>..\output\asi\</OutDir>
     <IntDir>..\output\obj\Debug\</IntDir>
-    <TargetName>AssetAutocollectorSASA</TargetName>
+    <TargetName>AssetAutocollectorSA</TargetName>
     <TargetExt>.asi</TargetExt>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -67,7 +66,7 @@
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -76,10 +75,10 @@
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalDependencies>plugin.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(PLUGIN_SDK_DIR)\output\lib;$(DXSDK_DIR)\Lib\x86;$(PLUGIN_SDK_DIR)\shared\bass;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ImportLibrary>..\output\asi\AssetAutocollectorSASA.lib</ImportLibrary>
+      <ImportLibrary>..\output\asi\AssetAutocollectorSA.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
-      <Command>copy /y "$(TargetPath)" "$(GTA_SA_DIR)\scripts\AssetAutocollectorSASA.asi"</Command>
+      <Command>copy /y "$(TargetPath)" "$(GTA_SA_DIR)\scripts\AssetAutocollectorSA.asi"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -98,10 +97,10 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>plugin_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(PLUGIN_SDK_DIR)\output\lib;$(DXSDK_DIR)\Lib\x86;$(PLUGIN_SDK_DIR)\shared\bass;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ImportLibrary>..\output\asi\AssetAutocollectorSASA.lib</ImportLibrary>
+      <ImportLibrary>..\output\asi\AssetAutocollectorSA.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
-      <Command>copy /y "$(TargetPath)" "$(GTA_SA_DIR)\scripts\AssetAutocollectorSASA.asi"</Command>
+      <Command>copy /y "$(TargetPath)" "$(GTA_SA_DIR)\scripts\AssetAutocollectorSA.asi"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
