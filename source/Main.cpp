@@ -32,7 +32,6 @@ public:
                 for (unsigned int i = 0; i < MAX_NUM_PICKUPS; ++i) {
                     if (CPickups::aPickUps[i].m_nPickupType == PICKUP_ASSET_REVENUE) {
                         totalMoney += CPickups::aPickUps[i].m_nMoneyPerDay;
-                        CPickups::aPickUps[i].m_fRevenueValue = 0.0f;
                         ++numAssets;
                     }
                 }
@@ -41,12 +40,7 @@ public:
                 if (totalMoney > 0) {
                     CWorld::Players[0].m_nMoney += totalMoney;
                     static char text[256];
-                    if (numAssets < 10) {
-                        sprintf(text, "You have earned $%d from %d/10 assets.", totalMoney, numAssets);
-                    }
-                    else {
-                        sprintf(text, "You have earned $%d from 10 assets.", totalMoney);
-                    }
+                      sprintf(text, "You have earned $%d from %d assets.", totalMoney, numAssets);
                     CHud::SetHelpMessage(text, true, false, false);
                 }
             }
